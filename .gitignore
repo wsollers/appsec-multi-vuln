@@ -1,0 +1,73 @@
+# OS and editor files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/
+*.user
+*.suo
+
+# Logs and local environment
+*.log
+.env
+.env.*
+!.env.example
+
+# C/C++
+build/
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+compile_commands.json
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.dll
+*.dylib
+*.exe
+*.pdb
+
+# Rust
+target/
+Cargo.lock
+
+# Go
+bin/
+coverage.out
+projects/go/case-*/case[0-9][0-9][0-9]
+projects/go/case-*/*.exe
+
+# JavaScript/TypeScript
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# .NET
+bin/
+obj/
+*.nupkg
+TestResults/
+
+# Java
+*.class
+*.jar
+.gradle/
+out/
+
+# PHP
+vendor/
+composer.lock
+
+# PowerShell
+*.ps1xml
+
+# Docker
+*.tar
+*.img
