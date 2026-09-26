@@ -1,0 +1,2 @@
+The files in this directory are local fixture material for the sample projects.
+They are not real service material and must not be reused outside isolated runs.

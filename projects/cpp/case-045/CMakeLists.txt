@@ -1,0 +1,15 @@
+cmake_minimum_required(VERSION 3.16)
+project(case045 LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+find_package(OpenSSL)
+if(NOT OpenSSL_FOUND)
+  message(STATUS "OpenSSL not found; skipping case045 target")
+  return()
+endif()
+
+add_executable(case045 main.cpp)
+target_compile_definitions(case045 PRIVATE CPPHTTPLIB_OPENSSL_SUPPORT)
+target_include_directories(case045 PRIVATE third_party)
+target_link_libraries(case045 PRIVATE OpenSSL::SSL OpenSSL::Crypto)

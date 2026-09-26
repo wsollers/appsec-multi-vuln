@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    "build": "node --check index.js",
+    "smoke": "node index.js"
+  }
+}
