@@ -3,8 +3,14 @@ $Root = Resolve-Path (Join-Path $PSScriptRoot "..")
 Set-Location $Root
 
 Get-ChildItem "projects/cpp" -Directory | ForEach-Object {
-  cmake -S $_.FullName -B (Join-Path $_.FullName "build")
-  cmake --build (Join-Path $_.FullName "build")
+  if (Test-Path (Join-Path $_.FullName "CMakeLists.txt")) {
+    cmake -S $_.FullName -B (Join-Path $_.FullName "build")
+    cmake --build (Join-Path $_.FullName "build")
+  } elseif (Test-Path (Join-Path $_.FullName "Makefile")) {
+    make -C $_.FullName
+  } elseif (Test-Path (Join-Path $_.FullName "msbuild/case038.vcxproj")) {
+    msbuild (Join-Path $_.FullName "msbuild/case038.vcxproj")
+  }
 }
 
 Get-ChildItem "projects/rust" -Directory | ForEach-Object {
@@ -18,7 +24,14 @@ Get-ChildItem "projects/go" -Directory | ForEach-Object {
 }
 
 Get-ChildItem "projects/javascript" -Directory | ForEach-Object {
-  node --check (Join-Path $_.FullName "index.js")
+  if (Test-Path (Join-Path $_.FullName "package.json")) {
+    Push-Location $_.FullName
+    npm install
+    npm run build
+    Pop-Location
+  } else {
+    node --check (Join-Path $_.FullName "index.js")
+  }
 }
 
 Get-ChildItem "projects/typescript" -Directory | ForEach-Object {
@@ -33,7 +46,13 @@ Get-ChildItem "projects/dotnet" -Directory | ForEach-Object {
 }
 
 Get-ChildItem "projects/java" -Directory | ForEach-Object {
-  javac (Join-Path $_.FullName "src/*.java")
+  if (Test-Path (Join-Path $_.FullName "pom.xml")) {
+    Push-Location $_.FullName
+    mvn -q -DskipTests package
+    Pop-Location
+  } else {
+    javac (Join-Path $_.FullName "src/*.java")
+  }
 }
 
 php -l "projects/php/case-018/index.php"

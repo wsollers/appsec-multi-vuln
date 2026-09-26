@@ -26,6 +26,8 @@ jobs:
         with:
           distribution: temurin
           java-version: "21"
+      - uses: microsoft/setup-msbuild@v2
+        if: runner.os == 'Windows'
       - uses: shivammathur/setup-php@v2
         with:
           php-version: "8.3"

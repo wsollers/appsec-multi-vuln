@@ -5,8 +5,14 @@ root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$root"
 
 for case_dir in projects/cpp/case-*; do
-  cmake -S "$case_dir" -B "$case_dir/build"
-  cmake --build "$case_dir/build"
+  if [[ -f "$case_dir/CMakeLists.txt" ]]; then
+    cmake -S "$case_dir" -B "$case_dir/build"
+    cmake --build "$case_dir/build"
+  elif [[ -f "$case_dir/configure.ac" ]]; then
+    (cd "$case_dir" && autoreconf -fi && ./configure && make)
+  elif [[ -f "$case_dir/Makefile" ]]; then
+    make -C "$case_dir"
+  fi
 done
 
 for case_dir in projects/rust/case-*; do
@@ -18,7 +24,11 @@ for case_dir in projects/go/case-*; do
 done
 
 for case_dir in projects/javascript/case-*; do
-  node --check "$case_dir/index.js"
+  if [[ -f "$case_dir/package.json" ]]; then
+    (cd "$case_dir" && npm install && npm run build)
+  else
+    node --check "$case_dir/index.js"
+  fi
 done
 
 for case_dir in projects/typescript/case-*; do
@@ -30,7 +40,11 @@ for case_dir in projects/dotnet/case-*; do
 done
 
 for case_dir in projects/java/case-*; do
-  javac "$case_dir"/src/*.java
+  if [[ -f "$case_dir/pom.xml" ]]; then
+    (cd "$case_dir" && mvn -q -DskipTests package)
+  else
+    javac "$case_dir"/src/*.java
+  fi
 done
 
 php -l projects/php/case-018/index.php

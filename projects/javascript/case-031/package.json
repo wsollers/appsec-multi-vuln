@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "build": "node --check index.js",
+    "smoke": "node index.js sample"
+  },
+  "dependencies": {
+    "lodash": "4.17.15"
+  }
+}

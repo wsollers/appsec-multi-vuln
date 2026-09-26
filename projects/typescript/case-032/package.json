@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "build": "tsc",
+    "smoke": "node dist/index.js --name=sample"
+  },
+  "dependencies": {
+    "minimist": "0.0.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "typescript": "^5.5.0"
+  }
+}
