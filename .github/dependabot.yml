@@ -1,0 +1,166 @@
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "npm"
+    directory: "/projects/javascript/case-031"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "npm"
+    directory: "/projects/javascript/case-047"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "npm"
+    directory: "/projects/javascript/case-056"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "npm"
+    directory: "/projects/javascript/case-066"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "npm"
+    directory: "/projects/typescript/case-012"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "npm"
+    directory: "/projects/typescript/case-013"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "npm"
+    directory: "/projects/typescript/case-032"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "npm"
+    directory: "/projects/typescript/case-048"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "npm"
+    directory: "/projects/typescript/case-057"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "npm"
+    directory: "/projects/typescript/case-067"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "cargo"
+    directory: "/projects/rust/case-004"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "cargo"
+    directory: "/projects/rust/case-005"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "cargo"
+    directory: "/projects/rust/case-006"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "cargo"
+    directory: "/projects/rust/case-033"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "cargo"
+    directory: "/projects/rust/case-040"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "cargo"
+    directory: "/projects/rust/case-051"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "cargo"
+    directory: "/projects/rust/case-065"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "gomod"
+    directory: "/projects/go/case-007"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "gomod"
+    directory: "/projects/go/case-008"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "gomod"
+    directory: "/projects/go/case-009"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "gomod"
+    directory: "/projects/go/case-039"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "gomod"
+    directory: "/projects/go/case-046"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "gomod"
+    directory: "/projects/go/case-055"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "gomod"
+    directory: "/projects/go/case-064"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "nuget"
+    directory: "/projects/dotnet/case-014"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "nuget"
+    directory: "/projects/dotnet/case-015"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "nuget"
+    directory: "/projects/dotnet/case-035"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "nuget"
+    directory: "/projects/dotnet/case-043"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "nuget"
+    directory: "/projects/dotnet/case-044"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "nuget"
+    directory: "/projects/dotnet/case-050"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "nuget"
+    directory: "/projects/dotnet/case-059"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "nuget"
+    directory: "/projects/dotnet/case-069"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "nuget"
+    directory: "/projects/dotnet/case-071"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "maven"
+    directory: "/projects/java/case-034"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "docker"
+    directory: "/dockerfiles/case-021"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "docker"
+    directory: "/dockerfiles/case-022"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "docker"
+    directory: "/dockerfiles/case-023"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "docker"
+    directory: "/dockerfiles/case-024"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "docker"
+    directory: "/dockerfiles/case-025"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "docker"
+    directory: "/dockerfiles/case-072"
+    schedule:
+      interval: "weekly"

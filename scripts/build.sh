@@ -47,6 +47,18 @@ for case_dir in projects/java/case-*; do
   fi
 done
 
-php -l projects/php/case-018/index.php
-bash -n projects/bash/case-019/run.sh
-pwsh -NoProfile -File projects/powershell/case-020/run.ps1 "1+1" >/dev/null
+for file in projects/php/case-*/*.php; do
+  php -l "$file"
+done
+
+for file in projects/bash/case-*/*.sh projects/php/case-*/*.sh; do
+  [[ -e "$file" ]] && bash -n "$file"
+done
+
+if command -v pwsh >/dev/null 2>&1; then
+  for file in projects/powershell/case-*/*.ps1; do
+    pwsh -NoProfile -Command "\$tokens=\$null; \$errors=\$null; [System.Management.Automation.Language.Parser]::ParseFile('$file', [ref]\$tokens, [ref]\$errors) | Out-Null; if (\$errors.Count -gt 0) { \$errors | ForEach-Object { Write-Error \$_ }; exit 1 }"
+  done
+else
+  echo "pwsh not found; skipping PowerShell parse checks"
+fi

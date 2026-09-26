@@ -55,6 +55,19 @@ Get-ChildItem "projects/java" -Directory | ForEach-Object {
   }
 }
 
-php -l "projects/php/case-018/index.php"
-bash -n "projects/bash/case-019/run.sh"
-pwsh -NoProfile -File "projects/powershell/case-020/run.ps1" "1+1" | Out-Null
+Get-ChildItem "projects/php" -Recurse -Filter "*.php" | ForEach-Object {
+  php -l $_.FullName
+}
+
+Get-ChildItem "projects/bash","projects/php" -Recurse -Filter "*.sh" | ForEach-Object {
+  bash -n $_.FullName
+}
+
+Get-ChildItem "projects/powershell" -Recurse -Filter "*.ps1" | ForEach-Object {
+  $tokens = $null
+  $errors = $null
+  [System.Management.Automation.Language.Parser]::ParseFile($_.FullName, [ref]$tokens, [ref]$errors) | Out-Null
+  if ($errors.Count -gt 0) {
+    throw $errors[0].Message
+  }
+}
