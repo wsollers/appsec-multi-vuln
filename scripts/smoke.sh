@@ -14,5 +14,6 @@ node projects/typescript/case-013/dist/index.js '{"name":"demo"}' >/dev/null
 dotnet run --project projects/dotnet/case-014 -- "echo sample" >/dev/null
 java -cp projects/java/case-016/src Main sample >/dev/null
 php projects/php/case-018/index.php home >/dev/null
+python3 projects/python/case-074/main.py sample >/dev/null
 bash projects/bash/case-019/run.sh "printf sample" >/dev/null
 pwsh -NoProfile -File projects/powershell/case-020/run.ps1 "1+1" >/dev/null

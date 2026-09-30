@@ -24,6 +24,7 @@ Install the toolchains needed for the cases you want to build:
 - .NET SDK
 - JDK
 - PHP
+- Python 3
 - Bash
 - PowerShell
 - Docker, for container examples

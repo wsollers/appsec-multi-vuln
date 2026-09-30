@@ -101,6 +101,11 @@ out/
 vendor/
 composer.lock
 
+# Python
+__pycache__/
+*.pyc
+.venv/
+
 # PowerShell
 *.ps1xml
 
