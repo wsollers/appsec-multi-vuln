@@ -51,6 +51,10 @@ for file in projects/php/case-*/*.php; do
   php -l "$file"
 done
 
+for file in projects/python/case-*/*.py; do
+  python3 -m py_compile "$file"
+done
+
 for file in projects/bash/case-*/*.sh projects/php/case-*/*.sh; do
   [[ -e "$file" ]] && bash -n "$file"
 done

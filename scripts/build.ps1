@@ -59,6 +59,10 @@ Get-ChildItem "projects/php" -Recurse -Filter "*.php" | ForEach-Object {
   php -l $_.FullName
 }
 
+Get-ChildItem "projects/python" -Recurse -Filter "*.py" | ForEach-Object {
+  python -m py_compile $_.FullName
+}
+
 Get-ChildItem "projects/bash","projects/php" -Recurse -Filter "*.sh" | ForEach-Object {
   bash -n $_.FullName
 }
