@@ -164,3 +164,7 @@ updates:
     directory: "/dockerfiles/case-072"
     schedule:
       interval: "weekly"
+  - package-ecosystem: "docker"
+    directory: "/dockerfiles/case-082"
+    schedule:
+      interval: "weekly"
