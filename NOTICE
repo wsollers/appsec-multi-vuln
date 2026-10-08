@@ -1,0 +1,9 @@
+Third-party reference material
+==============================
+
+Portions of this repository were independently adapted from public test material
+published by the National Institute of Standards and Technology. The referenced
+Juliet C/C++ test suite is dedicated to the public domain under CC0 1.0.
+
+No original test-suite directory names, case labels, or explanatory annotations
+are retained in the adapted source files.

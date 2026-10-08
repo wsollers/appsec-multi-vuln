@@ -1,6 +1,6 @@
 # AppSec Multi-Language Corpus
 
-This repository contains compact, intentionally imperfect sample projects for benchmark and calibration work. Public case names are opaque by design so evaluations can measure tool behavior without answers appearing in repository labels or documentation.
+This repository contains compact sample projects used to exercise common language, build, and packaging configurations. Case identifiers and implementation names are intentionally neutral.
 
 ## Safety
 
@@ -57,8 +57,4 @@ Windows PowerShell:
 ./scripts/smoke.ps1
 ```
 
-The smoke tests check that representative cases start and complete. They do not identify the underlying benchmark conditions.
-
-## Benchmark Use
-
-Use the public repository as the target corpus. Keep scoring material, expected findings, labels, mappings, and evaluator notes outside this repository so benchmark runs remain independent.
+The smoke tests check that representative cases start and complete. Native programs under `projects/cpp/case-001/workspace` are build-only and are not started by these scripts.
