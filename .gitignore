@@ -84,6 +84,9 @@ coverage/
 package-lock.json
 yarn.lock
 pnpm-lock.yaml
+!projects/javascript-bundler/case-086/package-lock.json
+!projects/node-addon/case-087/package-lock.json
+!projects/node-lifecycle/case-088/package-lock.json
 
 # .NET
 bin/
@@ -97,14 +100,21 @@ TestResults/
 .gradle/
 out/
 
+# Fixture-specific build products
+.build/
+projects/android/case-092/local.properties
+
 # PHP
 vendor/
 composer.lock
+!projects/php-composer/case-089/composer.lock
 
 # Python
 __pycache__/
 *.pyc
 .venv/
+*.egg-info/
+*.whl
 
 # PowerShell
 *.ps1xml

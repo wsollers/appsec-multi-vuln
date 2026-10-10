@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "capture_policies": {
+    "required": "A material compiler/build lifecycle exists and execution capture is required for full analysis.",
+    "auto": "A build or package lifecycle is applicable when its manifest/toolchain is detected.",
+    "disabled": "Source is interpreted directly; syntax validation is not a material captured build."
+  },
+  "projects": [
+    {
+      "path": "projects/native/case-083",
+      "project_type": "cmake-c-vulnerability-case",
+      "language": "c",
+      "build_command": "cmake -S . -B build && cmake --build build",
+      "capture_policy": "required",
+      "compiler_artifact": "build/case083",
+      "codeql": {"language": "cpp", "mode": "manual", "capability": "supported"},
+      "vulnerability_ids": ["CWE-120"],
+      "expected_applicability": "applicable-required"
+    },
+    {
+      "path": "projects/native/linux-calibration",
+      "project_type": "cmake-native-toolchain-calibration",
+      "language": "c-cpp",
+      "build_command": "cmake --preset baseline && cmake --build --preset baseline",
+      "capture_policy": "required",
+      "compiler_artifact": "build/default/observer_a and build/default/observer_b",
+      "codeql": {"language": "cpp", "mode": "manual", "capability": "supported"},
+      "vulnerability_ids": [],
+      "expected_applicability": "applicable-required-calibration-only"
+    },
+    {
+      "path": "projects/rust/case-004",
+      "project_type": "cargo-binary",
+      "language": "rust",
+      "build_command": "cargo build",
+      "capture_policy": "required",
+      "compiler_artifact": "target/debug/case-004",
+      "codeql": {"language": null, "mode": "unavailable", "capability": "not-supported"},
+      "vulnerability_ids": ["CWE-78"],
+      "expected_applicability": "applicable-required"
+    },
+    {
+      "path": "projects/go/case-007",
+      "project_type": "go-module",
+      "language": "go",
+      "build_command": "go build ./...",
+      "capture_policy": "required",
+      "compiler_artifact": "case-007 executable",
+      "codeql": {"language": "go", "mode": "manual", "capability": "supported"},
+      "vulnerability_ids": ["CWE-78"],
+      "expected_applicability": "applicable-required"
+    },
+    {
+      "path": "projects/dotnet/case-014",
+      "project_type": "dotnet-console",
+      "language": "csharp",
+      "build_command": "dotnet build case-014.csproj",
+      "capture_policy": "required",
+      "compiler_artifact": "bin/Debug/net8.0/case-014.dll",
+      "codeql": {"language": "csharp", "mode": "manual", "capability": "supported"},
+      "vulnerability_ids": ["CWE-78"],
+      "expected_applicability": "applicable-required"
+    },
+    {
+      "path": "projects/java/case-016",
+      "project_type": "javac-application",
+      "language": "java",
+      "build_command": "javac src/Main.java",
+      "capture_policy": "required",
+      "compiler_artifact": "src/Main.class",
+      "codeql": {"language": "java-kotlin", "mode": "manual", "capability": "supported"},
+      "vulnerability_ids": ["CWE-78"],
+      "expected_applicability": "applicable-required"
+    },
+    {
+      "path": "projects/kotlin/case-084",
+      "project_type": "kotlinc-jvm-application",
+      "language": "kotlin",
+      "build_command": "./build.sh",
+      "capture_policy": "required",
+      "compiler_artifact": "build/case-084.jar",
+      "codeql": {"language": "java-kotlin", "mode": "manual", "capability": "supported"},
+      "vulnerability_ids": ["CWE-78"],
+      "expected_applicability": "applicable-required"
+    },
+    {
+      "path": "projects/python/case-073",
+      "project_type": "plain-python-script",
+      "language": "python",
+      "build_command": "python3 -m py_compile main.py",
+      "capture_policy": "disabled",
+      "compiler_artifact": null,
+      "codeql": {"language": "python", "mode": "none", "capability": "supported-no-build"},
+      "vulnerability_ids": ["CWE-78"],
+      "expected_applicability": "not-applicable-syntax-only"
+    },
+    {
+      "path": "projects/python-package/case-085",
+      "project_type": "python-native-extension-package",
+      "language": "python-c",
+      "build_command": "python3 -m pip wheel . --no-deps --wheel-dir dist",
+      "capture_policy": "required",
+      "compiler_artifact": "dist/case_085-1.0.0-*.whl containing case085 native module",
+      "codeql": {"language": "python+cpp", "mode": "manual", "capability": "supported-as-two-language-analyses"},
+      "vulnerability_ids": ["CWE-120"],
+      "expected_applicability": "applicable-required-native-build"
+    },
+    {
+      "path": "projects/javascript/case-010",
+      "project_type": "plain-node-script",
+      "language": "javascript",
+      "build_command": "node --check index.js",
+      "capture_policy": "disabled",
+      "compiler_artifact": null,
+      "codeql": {"language": "javascript-typescript", "mode": "none", "capability": "supported-no-build"},
+      "vulnerability_ids": ["CWE-95"],
+      "expected_applicability": "not-applicable-syntax-only"
+    },
+    {
+      "path": "projects/typescript/case-012",
+      "project_type": "tsc-application",
+      "language": "typescript",
+      "build_command": "npm install && npm run build",
+      "capture_policy": "auto",
+      "compiler_artifact": "dist/index.js",
+      "codeql": {"language": "javascript-typescript", "mode": "none", "capability": "supported-no-capture-needed"},
+      "vulnerability_ids": ["CWE-78"],
+      "expected_applicability": "applicable-auto-material-transpile"
+    },
+    {
+      "path": "projects/javascript-bundler/case-086",
+      "project_type": "esbuild-browser-bundle",
+      "language": "javascript",
+      "build_command": "npm ci && npm run build",
+      "capture_policy": "auto",
+      "compiler_artifact": "dist/bundle.js",
+      "codeql": {"language": "javascript-typescript", "mode": "none", "capability": "supported-no-capture-needed"},
+      "vulnerability_ids": ["CWE-79"],
+      "expected_applicability": "applicable-auto-material-bundle"
+    },
+    {
+      "path": "projects/node-addon/case-087",
+      "project_type": "node-gyp-native-addon",
+      "language": "javascript-cpp",
+      "build_command": "npm ci && npm run build",
+      "capture_policy": "required",
+      "compiler_artifact": "build/Release/case087.node",
+      "codeql": {"language": "javascript-typescript+cpp", "mode": "manual", "capability": "supported-as-two-language-analyses"},
+      "vulnerability_ids": ["CWE-120"],
+      "expected_applicability": "applicable-required-native-build"
+    },
+    {
+      "path": "projects/node-lifecycle/case-088",
+      "project_type": "npm-postinstall-lifecycle",
+      "language": "javascript",
+      "build_command": "npm ci && npm run build",
+      "capture_policy": "auto",
+      "compiler_artifact": ".build/postinstall.marker",
+      "codeql": {"language": "javascript-typescript", "mode": "none", "capability": "supported-no-capture-needed"},
+      "vulnerability_ids": ["CWE-95"],
+      "expected_applicability": "applicable-auto-lifecycle"
+    },
+    {
+      "path": "projects/php/case-018",
+      "project_type": "plain-php-script",
+      "language": "php",
+      "build_command": "php -l index.php",
+      "capture_policy": "disabled",
+      "compiler_artifact": null,
+      "codeql": {"language": null, "mode": "unavailable", "capability": "not-supported"},
+      "vulnerability_ids": ["CWE-22"],
+      "expected_applicability": "not-applicable-syntax-only"
+    },
+    {
+      "path": "projects/php-composer/case-089",
+      "project_type": "composer-script-lifecycle",
+      "language": "php",
+      "build_command": "composer install --no-interaction && composer run build",
+      "capture_policy": "auto",
+      "compiler_artifact": ".build/composer.marker",
+      "codeql": {"language": null, "mode": "unavailable", "capability": "not-supported"},
+      "vulnerability_ids": ["CWE-502"],
+      "expected_applicability": "applicable-auto-lifecycle"
+    },
+    {
+      "path": "projects/php-extension/case-090",
+      "project_type": "phpize-native-extension",
+      "language": "php-c",
+      "build_command": "./build.sh",
+      "capture_policy": "required",
+      "compiler_artifact": "modules/case090.so",
+      "codeql": {"language": "cpp", "mode": "manual", "capability": "c-source-supported"},
+      "vulnerability_ids": ["CWE-120"],
+      "expected_applicability": "applicable-required-native-build"
+    },
+    {
+      "path": "projects/wasm/case-091",
+      "project_type": "clang-c-to-webassembly",
+      "language": "c-webassembly",
+      "build_command": "./build.sh",
+      "capture_policy": "required",
+      "compiler_artifact": "build/case091.wasm",
+      "codeql": {"language": "cpp", "mode": "manual", "capability": "c-source-supported-wasm-artifact-not-analyzed"},
+      "vulnerability_ids": ["CWE-787"],
+      "expected_applicability": "applicable-required"
+    },
+    {
+      "path": "projects/android/case-092",
+      "project_type": "android-gradle-application",
+      "language": "java-android",
+      "build_command": "gradle --no-daemon :app:assembleDebug",
+      "capture_policy": "required",
+      "compiler_artifact": "app/build/outputs/apk/debug/app-debug.apk",
+      "codeql": {"language": "java-kotlin", "mode": "manual", "capability": "supported-with-android-sdk"},
+      "vulnerability_ids": ["CWE-319", "CWE-926"],
+      "expected_applicability": "applicable-required-sdk-gated"
+    }
+  ]
+}

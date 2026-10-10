@@ -1,0 +1,10 @@
+{
+  "name": "fixture/case-089",
+  "description": "Synthetic Composer lifecycle fixture",
+  "type": "project",
+  "license": "MIT",
+  "require": {},
+  "scripts": {
+    "build": "@php scripts/build.php"
+  }
+}

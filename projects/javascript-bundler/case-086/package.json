@@ -1,0 +1,11 @@
+{
+  "name": "case-086",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "esbuild src/index.js --bundle --platform=browser --outfile=dist/bundle.js"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2"
+  }
+}
