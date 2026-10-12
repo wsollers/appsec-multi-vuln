@@ -26,7 +26,8 @@ describe('API entry points', () => {
         state: 'sample',
       });
     expect(authorization.status).toBe(302);
-    const location = new URL(authorization.headers.location);
+    expect(authorization.headers.location).toBeTypeOf('string');
+    const location = new URL(String(authorization.headers.location));
     const code = location.searchParams.get('code');
     const token = await request(app).post('/api/v1/auth/oauth/token').send({ code });
     expect(token.status).toBe(200);
