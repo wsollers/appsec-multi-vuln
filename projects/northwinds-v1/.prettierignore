@@ -1,0 +1,8 @@
+dist
+build
+coverage
+node_modules
+*.sqlite
+*.db
+backend/src/openapi/openapi.json
+tests/postman

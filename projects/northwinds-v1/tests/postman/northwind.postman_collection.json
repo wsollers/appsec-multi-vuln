@@ -1,0 +1,236 @@
+{
+  "info": {
+    "name": "Northwind Secure API",
+    "description": "Contract/smoke collection for the secure Northwind reference API (REST + GraphQL). Run the 'Auth' folder first to populate the {{accessToken}} and {{csrfToken}} variables used by the other requests.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:4000" },
+    { "key": "accessToken", "value": "" },
+    { "key": "csrfToken", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Get CSRF token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('200', () => pm.response.to.have.status(200));",
+                  "pm.collectionVariables.set('csrfToken', pm.response.json().csrfToken);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/api/v1/auth/csrf-token", "host": ["{{baseUrl}}"], "path": ["api", "v1", "auth", "csrf-token"] }
+          }
+        },
+        {
+          "name": "Dev token (admin)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('200', () => pm.response.to.have.status(200));",
+                  "pm.collectionVariables.set('accessToken', pm.response.json().accessToken);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"username\": \"admin\"\n}" },
+            "url": { "raw": "{{baseUrl}}/api/v1/auth/dev/token", "host": ["{{baseUrl}}"], "path": ["api", "v1", "auth", "dev", "token"] }
+          }
+        },
+        {
+          "name": "Me",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+            "url": { "raw": "{{baseUrl}}/api/v1/auth/me", "host": ["{{baseUrl}}"], "path": ["api", "v1", "auth", "me"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Products",
+      "item": [
+        {
+          "name": "List products",
+          "event": [
+            { "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('200', () => pm.response.to.have.status(200));", "pm.test('has items', () => pm.expect(pm.response.json().items).to.be.an('array'));"] } }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+            "url": { "raw": "{{baseUrl}}/api/v1/products?page=1&pageSize=25", "host": ["{{baseUrl}}"], "path": ["api", "v1", "products"], "query": [{ "key": "page", "value": "1" }, { "key": "pageSize", "value": "25" }] }
+          }
+        },
+        {
+          "name": "Get product 1",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+            "url": { "raw": "{{baseUrl}}/api/v1/products/1", "host": ["{{baseUrl}}"], "path": ["api", "v1", "products", "1"] }
+          }
+        },
+        {
+          "name": "Create product",
+          "event": [
+            { "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('201', () => pm.response.to.have.status(201));"] } }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{accessToken}}" },
+              { "key": "X-CSRF-Token", "value": "{{csrfToken}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"productName\": \"Postman Widget\",\n  \"unitPrice\": 12.5,\n  \"unitsInStock\": 10\n}" },
+            "url": { "raw": "{{baseUrl}}/api/v1/products", "host": ["{{baseUrl}}"], "path": ["api", "v1", "products"] }
+          }
+        },
+        {
+          "name": "Create product WITHOUT CSRF (expect 403)",
+          "event": [
+            { "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('403', () => pm.response.to.have.status(403));"] } }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"productName\": \"No CSRF\"\n}" },
+            "url": { "raw": "{{baseUrl}}/api/v1/products", "host": ["{{baseUrl}}"], "path": ["api", "v1", "products"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Categories",
+      "item": [
+        {
+          "name": "List categories",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+            "url": { "raw": "{{baseUrl}}/api/v1/categories", "host": ["{{baseUrl}}"], "path": ["api", "v1", "categories"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Customers",
+      "item": [
+        {
+          "name": "List customers",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+            "url": { "raw": "{{baseUrl}}/api/v1/customers", "host": ["{{baseUrl}}"], "path": ["api", "v1", "customers"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Suppliers / Employees / Shippers",
+      "item": [
+        {
+          "name": "List suppliers",
+          "request": { "method": "GET", "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }], "url": { "raw": "{{baseUrl}}/api/v1/suppliers", "host": ["{{baseUrl}}"], "path": ["api", "v1", "suppliers"] } }
+        },
+        {
+          "name": "List employees",
+          "request": { "method": "GET", "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }], "url": { "raw": "{{baseUrl}}/api/v1/employees", "host": ["{{baseUrl}}"], "path": ["api", "v1", "employees"] } }
+        },
+        {
+          "name": "List shippers",
+          "request": { "method": "GET", "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }], "url": { "raw": "{{baseUrl}}/api/v1/shippers", "host": ["{{baseUrl}}"], "path": ["api", "v1", "shippers"] } }
+        }
+      ]
+    },
+    {
+      "name": "Orders",
+      "item": [
+        {
+          "name": "List orders",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+            "url": { "raw": "{{baseUrl}}/api/v1/orders", "host": ["{{baseUrl}}"], "path": ["api", "v1", "orders"] }
+          }
+        },
+        {
+          "name": "Get order 10248",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+            "url": { "raw": "{{baseUrl}}/api/v1/orders/10248", "host": ["{{baseUrl}}"], "path": ["api", "v1", "orders", "10248"] }
+          }
+        },
+        {
+          "name": "Create order",
+          "event": [
+            { "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('201', () => pm.response.to.have.status(201));"] } }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{accessToken}}" },
+              { "key": "X-CSRF-Token", "value": "{{csrfToken}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"customerId\": \"ALFKI\",\n  \"employeeId\": 1,\n  \"orderDate\": \"2024-05-01\",\n  \"freight\": 15.25,\n  \"shipName\": \"Alfreds\",\n  \"shipCity\": \"Berlin\",\n  \"shipCountry\": \"Germany\",\n  \"details\": [\n    { \"productId\": 1, \"unitPrice\": 18.0, \"quantity\": 4, \"discount\": 0 }\n  ]\n}" },
+            "url": { "raw": "{{baseUrl}}/api/v1/orders", "host": ["{{baseUrl}}"], "path": ["api", "v1", "orders"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "GraphQL",
+      "item": [
+        {
+          "name": "Query products",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"query\": \"{ products(pageSize: 5) { items { productId productName unitPrice } pageInfo { total } } }\"\n}" },
+            "url": { "raw": "{{baseUrl}}/graphql", "host": ["{{baseUrl}}"], "path": ["graphql"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "AuthZ boundary",
+      "item": [
+        {
+          "name": "No token (expect 401)",
+          "event": [
+            { "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('401', () => pm.response.to.have.status(401));"] } }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/api/v1/products", "host": ["{{baseUrl}}"], "path": ["api", "v1", "products"] }
+          }
+        }
+      ]
+    }
+  ]
+}
