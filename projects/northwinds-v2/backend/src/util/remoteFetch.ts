@@ -1,19 +1,22 @@
 import { BadRequest, Forbidden } from '../http/errors.js';
 
-export interface SsrfFetchOptions {
+export interface RemoteFetchOptions {
   allowedHosts: readonly string[];
   timeoutMs?: number;
   maxBytes?: number;
 }
 
-export interface SafeFetchResult {
+export interface RemoteFetchResult {
   status: number;
   contentType: string | null;
   bytes: number;
   bodyText: string;
 }
 
-export async function safeFetch(rawUrl: string, opts: SsrfFetchOptions): Promise<SafeFetchResult> {
+export async function fetchRemoteContent(
+  rawUrl: string,
+  opts: RemoteFetchOptions,
+): Promise<RemoteFetchResult> {
   let url: URL;
   try {
     url = new URL(rawUrl);

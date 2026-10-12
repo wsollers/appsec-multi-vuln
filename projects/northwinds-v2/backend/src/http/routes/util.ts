@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { z } from 'zod';
-import { safeFetch } from '../../util/ssrfFetch.js';
+import { fetchRemoteContent } from '../../util/remoteFetch.js';
 
 const FetchSchema = z.object({ url: z.string().url().max(2048) });
 
@@ -9,7 +9,9 @@ export function buildUtilRouter(): Router {
   router.post('/fetch-preview', async (req, res, next) => {
     try {
       const { url } = FetchSchema.parse(req.body);
-      const result = await safeFetch(url, { allowedHosts: req.ctx.config.outboundFetchAllowedHosts });
+      const result = await fetchRemoteContent(url, {
+        allowedHosts: req.ctx.config.outboundFetchAllowedHosts,
+      });
       res.json({
         status: result.status,
         contentType: result.contentType,
@@ -28,8 +30,14 @@ export function buildImportsRouter(): Router {
   router.post('/preview', async (req, res, next) => {
     try {
       const { url } = FetchSchema.parse(req.body);
-      const result = await safeFetch(url, { allowedHosts: req.ctx.config.outboundFetchAllowedHosts });
-      res.json({ content: result.bodyText, status: result.status, contentType: result.contentType });
+      const result = await fetchRemoteContent(url, {
+        allowedHosts: req.ctx.config.outboundFetchAllowedHosts,
+      });
+      res.json({
+        content: result.bodyText,
+        status: result.status,
+        contentType: result.contentType,
+      });
     } catch (err) {
       next(err);
     }
