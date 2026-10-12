@@ -1,0 +1,29 @@
+# Dependencies & build output (also ignored at repo root; kept here for clarity)
+node_modules/
+dist/
+build/
+coverage/
+
+# Local environment files (never commit real secrets)
+.env
+.env.*
+!.env.example
+
+# SQLite datastore and any local data artifacts
+data/
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+
+# Local signing keys (generated for dev; never commit)
+backend/keys/
+*.pem
+
+# Vite cache
+frontend/.vite/
+
+# Keep the lockfile for reproducible `npm ci` in CI (root .gitignore ignores it by name).
+!package-lock.json
