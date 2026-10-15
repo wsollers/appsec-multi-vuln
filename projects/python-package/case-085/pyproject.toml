@@ -5,5 +5,5 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "case-085"
 version = "1.0.0"
-description = "Synthetic native-extension security fixture"
+description = "Python package with a CPython C extension"
 requires-python = ">=3.10"

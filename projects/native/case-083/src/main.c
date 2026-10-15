@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <string.h>
 
-/* Synthetic CWE-120: an unbounded copy into a fixed-size stack buffer. */
 static void print_label(const char *input) {
     char label[32];
     strcpy(label, input);

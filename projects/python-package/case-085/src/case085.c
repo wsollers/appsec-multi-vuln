@@ -9,7 +9,6 @@ static PyObject *copy_label(PyObject *self, PyObject *args) {
     if (!PyArg_ParseTuple(args, "s", &input)) {
         return NULL;
     }
-    /* Synthetic CWE-120: intentionally unbounded copy for SAST. */
     strcpy(label, input);
     return PyUnicode_FromString(label);
 }

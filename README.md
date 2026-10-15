@@ -1,6 +1,6 @@
 # AppSec Multi-Language Corpus
 
-This repository contains compact, intentionally vulnerable sample projects for
+This repository contains compact sample projects in many languages for
 build-capture and static-analysis testing. Case identifiers and implementation
 names are deliberately neutral. The authoritative machine-readable
 applicability data is [`support/project-matrix.json`](support/project-matrix.json).
@@ -8,7 +8,7 @@ applicability data is [`support/project-matrix.json`](support/project-matrix.jso
 ## Safety boundary
 
 Run the fixtures only in isolated local or CI environments. Do not deploy them
-or reuse their vulnerable patterns. Fixtures do not contact arbitrary services,
+or reuse their code in production. Fixtures do not contact arbitrary services,
 expose a listener during build, modify host configuration, or perform harmful
 actions. The Node and Composer lifecycle hooks write marker files only beneath
 their own `.build/` directories. Dependency installation may contact ordinary
@@ -44,7 +44,7 @@ dependency manager is used.
 | Project | Material build command | Capture |
 | --- | --- | --- |
 | `projects/native/case-083` | `cmake -S . -B build && cmake --build build` | required |
-| `projects/native/linux-calibration` | `cmake --preset baseline && cmake --build --preset baseline` | required (calibration, not a vulnerability case) |
+| `projects/native/linux-calibration` | `cmake --preset baseline && cmake --build --preset baseline` | required (toolchain calibration project) |
 | `projects/kotlin/case-084` | `./build.sh` | required |
 | `projects/python-package/case-085` | `python3 -m pip wheel . --no-deps --wheel-dir dist` | required |
 | `projects/javascript-bundler/case-086` | `npm ci && npm run build` | auto |
@@ -57,7 +57,25 @@ dependency manager is used.
 
 The JSON matrix also records representative existing Rust, Go, .NET, Java,
 Python, JavaScript, TypeScript, and PHP cases, compiler artifacts, CodeQL
-capability/mode, expected weaknesses, and the exact applicability outcome.
+capability/mode, the exact applicability outcome, and coverage artifacts.
+
+## Coverage fixtures
+
+Every matrix project carries a `coverage_artifacts` array; an empty array means
+the corpus ships no coverage report for that project. Four projects carry one
+small report each, one per supported exchange format:
+
+| Project | Report | Format | Source paths |
+| --- | --- | --- | --- |
+| `projects/native/case-083` | `lcov.info` | LCOV | `src/main.c` |
+| `projects/dotnet/case-014` | `cobertura.xml` | Cobertura XML | `Program.cs` |
+| `projects/java/case-016` | `jacoco.xml` | JaCoCo XML | `src/Main.java` |
+| `projects/rust/case-004` | `coverage.json` | LLVM coverage JSON | `src/main.rs` |
+
+These reports are deterministic corpus data with `provenance: "fixture"`. They
+are not claims that the current checkout was measured by a live test run.
+Report and source paths are relative to the project directory, so each report
+names real files in its own build unit.
 
 ## Android setup
 
@@ -66,8 +84,7 @@ Gradle Plugin 8.7.3, Gradle 8.9, compile/target SDK 35, and Build Tools 35.0.0.
 Install JDK 17, Android SDK Platform 35, and Build Tools 35.0.0; set
 `ANDROID_HOME` (or create an untracked `local.properties` with `sdk.dir`), then
 run the matrix command from the project directory. SDKs and generated APKs are
-not checked in. The manifest's cleartext-traffic and exported-activity settings
-are intentional SAST fixtures (CWE-319 and CWE-926).
+not checked in.
 
 ## Aggregate validation
 
@@ -78,7 +95,9 @@ run `./scripts/build.ps1`; `INCLUDE_SPECIALIZED=1` has the same meaning.
 
 Run `./scripts/smoke.sh` or `./scripts/smoke.ps1` after a successful aggregate
 build. `python3 scripts/validate-matrix.py` validates matrix shape, unique paths,
-capture policies, and project-directory resolution without invoking builds.
+capture policies, project-directory resolution, and coverage artifacts (closed
+fields, known formats and provenance, safe project-relative paths, unique report
+paths, and existing report and source files) without invoking builds.
 
 Build products, downloaded dependencies, SDK-local configuration, lifecycle
 markers, and package outputs are ignored and must remain untracked.

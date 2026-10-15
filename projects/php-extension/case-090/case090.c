@@ -12,7 +12,6 @@ PHP_FUNCTION(case090_copy_label) {
         Z_PARAM_STRING(input, input_len)
     ZEND_PARSE_PARAMETERS_END();
     (void)input_len;
-    /* Synthetic CWE-120: intentionally unbounded copy for SAST. */
     strcpy(label, input);
     RETURN_STRING(label);
 }

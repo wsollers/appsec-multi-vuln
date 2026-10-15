@@ -1,0 +1,85 @@
+{
+  "data": [
+    {
+      "files": [
+        {
+          "filename": "src/main.rs",
+          "segments": [],
+          "branches": [],
+          "expansions": [],
+          "summary": {
+            "lines": {
+              "count": 8,
+              "covered": 7,
+              "percent": 87.5
+            },
+            "functions": {
+              "count": 1,
+              "covered": 1,
+              "percent": 100.0
+            },
+            "instantiations": {
+              "count": 2,
+              "covered": 2,
+              "percent": 100.0
+            },
+            "regions": {
+              "count": 9,
+              "covered": 7,
+              "notcovered": 2,
+              "percent": 77.77777777777779
+            },
+            "branches": {
+              "count": 2,
+              "covered": 1,
+              "notcovered": 1,
+              "percent": 50.0
+            }
+          }
+        }
+      ],
+      "functions": [
+        {
+          "name": "case_004::main",
+          "count": 1,
+          "regions": [],
+          "branches": [],
+          "filenames": [
+            "src/main.rs"
+          ]
+        }
+      ],
+      "totals": {
+        "lines": {
+          "count": 8,
+          "covered": 7,
+          "percent": 87.5
+        },
+        "functions": {
+          "count": 1,
+          "covered": 1,
+          "percent": 100.0
+        },
+        "instantiations": {
+          "count": 2,
+          "covered": 2,
+          "percent": 100.0
+        },
+        "regions": {
+          "count": 9,
+          "covered": 7,
+          "notcovered": 2,
+          "percent": 77.77777777777779
+        },
+        "branches": {
+          "count": 2,
+          "covered": 1,
+          "notcovered": 1,
+          "percent": 50.0
+        }
+      }
+    }
+  ],
+  "type": "llvm.coverage.json.export",
+  "version": "2.0.1"
+}

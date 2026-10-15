@@ -1,6 +1,6 @@
 # case-086
 
-Browser JavaScript bundled with pinned esbuild. `innerHTML` receives a query
-parameter as an intentional CWE-79 fixture.
+Browser JavaScript bundled with pinned esbuild. The page shows the `message`
+query parameter in its `#output` element.
 
 Build: `npm ci && npm run build`.

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<report name="case-016">
+  <sessioninfo id="case-016-fixture" start="0" dump="0"/>
+  <package name="src">
+    <class name="src/Main" sourcefilename="Main.java">
+      <method name="&lt;init&gt;" desc="()V" line="4">
+        <counter type="INSTRUCTION" missed="3" covered="0"/>
+        <counter type="LINE" missed="1" covered="0"/>
+        <counter type="COMPLEXITY" missed="1" covered="0"/>
+        <counter type="METHOD" missed="1" covered="0"/>
+      </method>
+      <method name="main" desc="([Ljava/lang/String;)V" line="6">
+        <counter type="INSTRUCTION" missed="12" covered="58"/>
+        <counter type="BRANCH" missed="3" covered="3"/>
+        <counter type="LINE" missed="1" covered="9"/>
+        <counter type="COMPLEXITY" missed="2" covered="2"/>
+        <counter type="METHOD" missed="0" covered="1"/>
+      </method>
+      <counter type="INSTRUCTION" missed="15" covered="58"/>
+      <counter type="BRANCH" missed="3" covered="3"/>
+      <counter type="LINE" missed="2" covered="9"/>
+      <counter type="COMPLEXITY" missed="3" covered="2"/>
+      <counter type="METHOD" missed="1" covered="1"/>
+      <counter type="CLASS" missed="0" covered="1"/>
+    </class>
+    <sourcefile name="Main.java">
+      <line nr="4" mi="3" ci="0" mb="0" cb="0"/>
+      <line nr="6" mi="0" ci="8" mb="1" cb="1"/>
+      <line nr="7" mi="0" ci="8" mb="1" cb="1"/>
+      <line nr="8" mi="12" ci="0" mb="0" cb="0"/>
+      <line nr="9" mi="0" ci="16" mb="0" cb="0"/>
+      <line nr="10" mi="0" ci="4" mb="0" cb="0"/>
+      <line nr="11" mi="0" ci="10" mb="0" cb="0"/>
+      <line nr="13" mi="0" ci="4" mb="1" cb="1"/>
+      <line nr="14" mi="0" ci="4" mb="0" cb="0"/>
+      <line nr="16" mi="0" ci="3" mb="0" cb="0"/>
+      <line nr="17" mi="0" ci="1" mb="0" cb="0"/>
+      <counter type="INSTRUCTION" missed="15" covered="58"/>
+      <counter type="BRANCH" missed="3" covered="3"/>
+      <counter type="LINE" missed="2" covered="9"/>
+      <counter type="COMPLEXITY" missed="3" covered="2"/>
+      <counter type="METHOD" missed="1" covered="1"/>
+      <counter type="CLASS" missed="0" covered="1"/>
+    </sourcefile>
+    <counter type="INSTRUCTION" missed="15" covered="58"/>
+    <counter type="BRANCH" missed="3" covered="3"/>
+    <counter type="LINE" missed="2" covered="9"/>
+    <counter type="COMPLEXITY" missed="3" covered="2"/>
+    <counter type="METHOD" missed="1" covered="1"/>
+    <counter type="CLASS" missed="0" covered="1"/>
+  </package>
+  <counter type="INSTRUCTION" missed="15" covered="58"/>
+  <counter type="BRANCH" missed="3" covered="3"/>
+  <counter type="LINE" missed="2" covered="9"/>
+  <counter type="COMPLEXITY" missed="3" covered="2"/>
+  <counter type="METHOD" missed="1" covered="1"/>
+  <counter type="CLASS" missed="0" covered="1"/>
+</report>
