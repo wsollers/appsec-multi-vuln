@@ -4,6 +4,6 @@
     "smoke": "node index.js sample"
   },
   "dependencies": {
-    "lodash": "4.17.15"
+    "lodash": "4.18.1"
   }
 }
