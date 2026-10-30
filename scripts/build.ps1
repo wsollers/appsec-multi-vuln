@@ -45,7 +45,8 @@ if ($env:INCLUDE_SPECIALIZED -eq "1") {
   Get-ChildItem "projects/php-composer" -Directory | ForEach-Object { Push-Location $_.FullName; composer install --no-interaction; composer run build; Pop-Location }
   Get-ChildItem "projects/php-extension" -Directory | ForEach-Object { bash (Join-Path $_.FullName "build.sh") }
   Get-ChildItem "projects/android" -Directory | ForEach-Object { Push-Location $_.FullName; gradle --no-daemon :app:assembleDebug; Pop-Location }
-} else { Write-Host "specialized Composer, phpize, and Android builds skipped; set INCLUDE_SPECIALIZED=1 to enable" }
+  Get-ChildItem "projects/polyglot" -Directory | ForEach-Object { bash (Join-Path $_.FullName "build.sh") }
+} else { Write-Host "specialized Composer, phpize, Android, and polyglot builds skipped; set INCLUDE_SPECIALIZED=1 to enable" }
 Get-ChildItem "projects/powershell" -Recurse -Filter "*.ps1" | ForEach-Object {
   $tokens = $null; $errors = $null
   [System.Management.Automation.Language.Parser]::ParseFile($_.FullName, [ref]$tokens, [ref]$errors) | Out-Null

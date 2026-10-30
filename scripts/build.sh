@@ -50,8 +50,9 @@ if [[ "${INCLUDE_SPECIALIZED:-0}" == "1" ]]; then
   for case_dir in projects/php-composer/case-*; do (cd "$case_dir" && composer install --no-interaction && composer run build); done
   for case_dir in projects/php-extension/case-*; do "$case_dir/build.sh"; done
   for case_dir in projects/android/case-*; do (cd "$case_dir" && gradle --no-daemon :app:assembleDebug); done
+  for case_dir in projects/polyglot/case-*; do "$case_dir/build.sh"; done
 else
-  echo "specialized Composer, phpize, and Android builds skipped; set INCLUDE_SPECIALIZED=1 to enable"
+  echo "specialized Composer, phpize, Android, and polyglot builds skipped; set INCLUDE_SPECIALIZED=1 to enable"
 fi
 
 if command -v pwsh >/dev/null 2>&1; then

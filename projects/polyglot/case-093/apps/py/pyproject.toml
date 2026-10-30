@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools==75.6.0", "wheel==0.45.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "c093-app"
+version = "1.0.0"
+description = "Record tools that load the shared core library with ctypes"
+requires-python = ">=3.10"
+
+[project.scripts]
+c093-app = "c093app.cli:main"
+
+[tool.setuptools]
+packages = ["c093app"]

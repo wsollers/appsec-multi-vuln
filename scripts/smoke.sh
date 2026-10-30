@@ -17,4 +17,16 @@ bash projects/bash/case-019/run.sh "printf sample" >/dev/null
 if command -v pwsh >/dev/null 2>&1; then
   pwsh -NoProfile -File projects/powershell/case-020/run.ps1 "1+1" >/dev/null
 fi
+if [[ "${INCLUDE_SPECIALIZED:-0}" == "1" ]]; then
+  (
+    cd projects/polyglot/case-093
+    build/apps/cli/case093 samples/sample.rec >/dev/null
+    java -cp apps/jvm/binding/target/c093-binding-1.0.0.jar:apps/jvm/service/target/c093-service-1.0.0.jar \
+      org.example.c093.service.Main describe samples/sample.rec >/dev/null
+    PYTHONPATH=apps/py python3 -m c093app name sample >/dev/null
+    out="$(mktemp -d)"
+    build/go/gateway samples/sample.rec "$out" >/dev/null
+    rm -rf "$out"
+  )
+fi
 python3 scripts/validate-matrix.py

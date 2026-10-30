@@ -222,6 +222,17 @@
       "codeql": {"language": "java-kotlin", "mode": "manual", "capability": "supported-with-android-sdk"},
       "expected_applicability": "applicable-required-sdk-gated",
       "coverage_artifacts": []
+    },
+    {
+      "path": "projects/polyglot/case-093",
+      "project_type": "polyglot-shared-native-library",
+      "language": "c-cpp-java-python-go",
+      "build_command": "./build.sh",
+      "capture_policy": "required",
+      "compiler_artifact": "build/native/core/libcore.so, build/native/bridge-jni/libc093jni.so, build/apps/cli/case093, apps/jvm/service/target/c093-service-1.0.0.jar, dist/c093_ext-1.0.0-*.whl, and build/go/gateway",
+      "codeql": {"language": "cpp+java-kotlin+python+go", "mode": "manual", "capability": "supported-as-multiple-language-analyses"},
+      "expected_applicability": "applicable-required-native-build",
+      "coverage_artifacts": []
     }
   ]
 }

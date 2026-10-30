@@ -36,7 +36,9 @@ Install only the toolchains for cases you intend to build: CMake 3.20+ and a C/C
 compiler, Rust/Cargo, Go, Node.js 22.x and npm, .NET 8, JDK 17+, Kotlin 2.0.x,
 PHP 8.3, Python 3.10+, Bash, and PowerShell. Specialized fixtures additionally
 need Composer 2.x, PHP development headers plus `phpize`, or the Android tools
-listed below. Dependency versions are pinned in manifests and lockfiles where a
+listed below. The polyglot fixture needs CMake 3.24+, a C/C++ compiler, JDK 17
+with Maven, Python 3.10+ development headers, and Go 1.22+ with cgo on Linux,
+all at once. Dependency versions are pinned in manifests and lockfiles where a
 dependency manager is used.
 
 ## Project build matrix
@@ -54,6 +56,7 @@ dependency manager is used.
 | `projects/php-extension/case-090` | `./build.sh` | required |
 | `projects/wasm/case-091` | `./build.sh` | required |
 | `projects/android/case-092` | `gradle --no-daemon :app:assembleDebug` | required |
+| `projects/polyglot/case-093` | `./build.sh` | required (CMake, Maven, setuptools, and Go workspace) |
 
 The JSON matrix also records representative existing Rust, Go, .NET, Java,
 Python, JavaScript, TypeScript, and PHP cases, compiler artifacts, CodeQL
@@ -90,11 +93,13 @@ not checked in.
 
 On Linux/macOS, `./scripts/build.sh` builds the regular suite. Set
 `INCLUDE_CALIBRATION=1` for the larger native calibration project and
-`INCLUDE_SPECIALIZED=1` for Composer, phpize, and Android SDK cases. On Windows,
-run `./scripts/build.ps1`; `INCLUDE_SPECIALIZED=1` has the same meaning.
+`INCLUDE_SPECIALIZED=1` for Composer, phpize, Android SDK, and polyglot cases.
+On Windows, run `./scripts/build.ps1`; `INCLUDE_SPECIALIZED=1` has the same
+meaning, and the phpize and polyglot builds run their `build.sh` through Bash.
 
 Run `./scripts/smoke.sh` or `./scripts/smoke.ps1` after a successful aggregate
-build. `python3 scripts/validate-matrix.py` validates matrix shape, unique paths,
+build. With `INCLUDE_SPECIALIZED=1`, `./scripts/smoke.sh` also runs the
+polyglot front ends. `python3 scripts/validate-matrix.py` validates matrix shape, unique paths,
 capture policies, project-directory resolution, and coverage artifacts (closed
 fields, known formats and provenance, safe project-relative paths, unique report
 paths, and existing report and source files) without invoking builds.
