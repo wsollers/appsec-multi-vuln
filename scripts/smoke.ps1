@@ -4,6 +4,8 @@ Set-Location $Root
 
 $Native = Get-ChildItem "projects/native/case-083/build" -Recurse -Filter "case083.exe" | Select-Object -First 1
 if ($Native) { & $Native.FullName sample | Out-Null }
+$Native = Get-ChildItem "projects/native/case-094/build" -Recurse -Filter "case094.exe" | Select-Object -First 1
+if ($Native) { & $Native.FullName title sample | Out-Null }
 cargo run --quiet --manifest-path "projects/rust/case-006/Cargo.toml" -- demo | Out-Null
 Push-Location "projects/go/case-008"; go run . sample | Out-Null; Pop-Location
 node "projects/javascript/case-010/index.js" "1 + 1" | Out-Null

@@ -5,6 +5,7 @@ root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$root"
 
 projects/native/case-083/build/case083 sample >/dev/null
+projects/native/case-094/build/case094 title sample >/dev/null
 cargo run --quiet --manifest-path projects/rust/case-006/Cargo.toml -- demo >/dev/null
 (cd projects/go/case-008 && go run . sample >/dev/null)
 node projects/javascript/case-010/index.js "1 + 1" >/dev/null

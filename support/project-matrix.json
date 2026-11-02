@@ -233,6 +233,17 @@
       "codeql": {"language": "cpp+java-kotlin+python+go", "mode": "manual", "capability": "supported-as-multiple-language-analyses"},
       "expected_applicability": "applicable-required-native-build",
       "coverage_artifacts": []
+    },
+    {
+      "path": "projects/native/case-094",
+      "project_type": "cmake-cpp-executable",
+      "language": "cpp",
+      "build_command": "cmake -S . -B build && cmake --build build",
+      "capture_policy": "required",
+      "compiler_artifact": "build/case094",
+      "codeql": {"language": "cpp", "mode": "manual", "capability": "supported"},
+      "expected_applicability": "applicable-required",
+      "coverage_artifacts": []
     }
   ]
 }

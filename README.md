@@ -57,6 +57,7 @@ dependency manager is used.
 | `projects/wasm/case-091` | `./build.sh` | required |
 | `projects/android/case-092` | `gradle --no-daemon :app:assembleDebug` | required |
 | `projects/polyglot/case-093` | `./build.sh` | required (CMake, Maven, setuptools, and Go workspace) |
+| `projects/native/case-094` | `cmake -S . -B build && cmake --build build` | required |
 
 The JSON matrix also records representative existing Rust, Go, .NET, Java,
 Python, JavaScript, TypeScript, and PHP cases, compiler artifacts, CodeQL
