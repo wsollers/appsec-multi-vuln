@@ -55,6 +55,12 @@ else
   echo "specialized Composer, phpize, Android, and polyglot builds skipped; set INCLUDE_SPECIALIZED=1 to enable"
 fi
 
+if [[ "${INCLUDE_UNITY:-0}" == "1" ]]; then
+  (cd projects/unity/case-095 && python3 build.py)
+else
+  echo "Unity build skipped; set INCLUDE_UNITY=1 and UNITY_EDITOR to a provisioned, licensed editor"
+fi
+
 if command -v pwsh >/dev/null 2>&1; then
   for file in projects/powershell/case-*/*.ps1; do
     pwsh -NoProfile -Command "\$tokens=\$null; \$errors=\$null; [System.Management.Automation.Language.Parser]::ParseFile('$file', [ref]\$tokens, [ref]\$errors) | Out-Null; if (\$errors.Count -gt 0) { \$errors | ForEach-Object { Write-Error \$_ }; exit 1 }"

@@ -1,0 +1,9 @@
+/.gitattributes text eol=lf
+/.gitignore text eol=lf
+projects/unity/** text eol=lf
+scripts/tests/** text eol=lf
+scripts/validate-matrix.py text eol=lf
+scripts/build.sh text eol=lf
+scripts/build.ps1 text eol=lf
+support/project-matrix.json text eol=lf
+README.md text eol=lf

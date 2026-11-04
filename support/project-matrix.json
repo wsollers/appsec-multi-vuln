@@ -244,6 +244,17 @@
       "codeql": {"language": "cpp", "mode": "manual", "capability": "supported"},
       "expected_applicability": "applicable-required",
       "coverage_artifacts": []
+    },
+    {
+      "path": "projects/unity/case-095",
+      "project_type": "unity-player",
+      "language": "csharp",
+      "build_command": "python3 build.py",
+      "capture_policy": "required",
+      "compiler_artifact": "build/Case095.x86_64 and build/Case095_Data/Managed/Assembly-CSharp.dll",
+      "codeql": {"language": "csharp", "mode": "manual", "capability": "requires-unity-editor-and-compiler-capture"},
+      "expected_applicability": "applicable-required-editor-gated",
+      "coverage_artifacts": []
     }
   ]
 }

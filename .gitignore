@@ -104,6 +104,17 @@ out/
 .build/
 projects/android/case-092/local.properties
 
+# Unity generated state (source assets and .meta files stay tracked)
+projects/unity/*/Library/
+projects/unity/*/Temp/
+projects/unity/*/Logs/
+projects/unity/*/UserSettings/
+projects/unity/*/MemoryCaptures/
+projects/unity/*/Recordings/
+projects/unity/*/*.csproj
+projects/unity/*/*.sln
+projects/unity/*/*.slnx
+
 # PHP
 vendor/
 composer.lock

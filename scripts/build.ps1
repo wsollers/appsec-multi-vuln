@@ -47,6 +47,10 @@ if ($env:INCLUDE_SPECIALIZED -eq "1") {
   Get-ChildItem "projects/android" -Directory | ForEach-Object { Push-Location $_.FullName; gradle --no-daemon :app:assembleDebug; Pop-Location }
   Get-ChildItem "projects/polyglot" -Directory | ForEach-Object { bash (Join-Path $_.FullName "build.sh") }
 } else { Write-Host "specialized Composer, phpize, Android, and polyglot builds skipped; set INCLUDE_SPECIALIZED=1 to enable" }
+if ($env:INCLUDE_UNITY -eq "1") {
+  python (Join-Path $Root "projects\unity\case-095\build.py")
+  if ($LASTEXITCODE -ne 0) { throw "Unity fixture build failed ($LASTEXITCODE)" }
+} else { Write-Host "Unity build skipped; set INCLUDE_UNITY=1 and UNITY_EDITOR to a provisioned, licensed editor" }
 Get-ChildItem "projects/powershell" -Recurse -Filter "*.ps1" | ForEach-Object {
   $tokens = $null; $errors = $null
   [System.Management.Automation.Language.Parser]::ParseFile($_.FullName, [ref]$tokens, [ref]$errors) | Out-Null

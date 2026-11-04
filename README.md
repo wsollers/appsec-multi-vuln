@@ -36,7 +36,9 @@ Install only the toolchains for cases you intend to build: CMake 3.20+ and a C/C
 compiler, Rust/Cargo, Go, Node.js 22.x and npm, .NET 8, JDK 17+, Kotlin 2.0.x,
 PHP 8.3, Python 3.10+, Bash, and PowerShell. Specialized fixtures additionally
 need Composer 2.x, PHP development headers plus `phpize`, or the Android tools
-listed below. The polyglot fixture needs CMake 3.24+, a C/C++ compiler, JDK 17
+listed below. The separately opt-in Unity fixture needs licensed Unity
+2022.3.62f1 with Linux Build Support (Mono); see its
+[build recipe](projects/unity/case-095/README.md). The polyglot fixture needs CMake 3.24+, a C/C++ compiler, JDK 17
 with Maven, Python 3.10+ development headers, and Go 1.22+ with cgo on Linux,
 all at once. Dependency versions are pinned in manifests and lockfiles where a
 dependency manager is used.
@@ -58,6 +60,7 @@ dependency manager is used.
 | `projects/android/case-092` | `gradle --no-daemon :app:assembleDebug` | required |
 | `projects/polyglot/case-093` | `./build.sh` | required (CMake, Maven, setuptools, and Go workspace) |
 | `projects/native/case-094` | `cmake -S . -B build && cmake --build build` | required |
+| `projects/unity/case-095` | `python3 build.py` (`UNITY_EDITOR` required) | required (editor/module/license gated) |
 
 The JSON matrix also records representative existing Rust, Go, .NET, Java,
 Python, JavaScript, TypeScript, and PHP cases, compiler artifacts, CodeQL
@@ -90,6 +93,19 @@ Install JDK 17, Android SDK Platform 35, and Build Tools 35.0.0; set
 run the matrix command from the project directory. SDKs and generated APKs are
 not checked in.
 
+## Unity setup
+
+`projects/unity/case-095` is an original minimal C# Unity project with committed
+assets, GUID metadata, an enabled scene, pinned editor/builtin module metadata,
+and a real `BuildPipeline.BuildPlayer` entrypoint. Unity is engine identity in
+addition to C#, not a substitute for language detection. Generated `.csproj`
+or `.sln` files are not build authority. The scope is Linux x86_64 Mono only.
+The [fixture recipe](projects/unity/case-095/README.md) describes licensing,
+exact invocation, expected player/managed outputs, and separate test tiers.
+It includes no editor binary, license, generated player, package-CVE assertion,
+or fabricated coverage. Source/descriptor unit checks do not prove an editor
+build or compiler capture.
+
 ## Aggregate validation
 
 On Linux/macOS, `./scripts/build.sh` builds the regular suite. Set
@@ -97,6 +113,9 @@ On Linux/macOS, `./scripts/build.sh` builds the regular suite. Set
 `INCLUDE_SPECIALIZED=1` for Composer, phpize, Android SDK, and polyglot cases.
 On Windows, run `./scripts/build.ps1`; `INCLUDE_SPECIALIZED=1` has the same
 meaning, and the phpize and polyglot builds run their `build.sh` through Bash.
+Unity is **not** included by either switch: only `INCLUDE_UNITY=1` opts it into
+aggregate builds, and `UNITY_EDITOR` must name an already provisioned licensed
+editor. Leave it unset for normal aggregate builds.
 
 Run `./scripts/smoke.sh` or `./scripts/smoke.ps1` after a successful aggregate
 build. With `INCLUDE_SPECIALIZED=1`, `./scripts/smoke.sh` also runs the
@@ -104,6 +123,9 @@ polyglot front ends. `python3 scripts/validate-matrix.py` validates matrix shape
 capture policies, project-directory resolution, and coverage artifacts (closed
 fields, known formats and provenance, safe project-relative paths, unique report
 paths, and existing report and source files) without invoking builds.
+It also checks Unity descriptor pins, declared/recorded builtin-module
+consistency, asset metadata GUIDs, and enabled-scene references without invoking
+an editor or asserting actual dependency resolution.
 
 Build products, downloaded dependencies, SDK-local configuration, lifecycle
 markers, and package outputs are ignored and must remain untracked.
